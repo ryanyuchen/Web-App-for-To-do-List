@@ -7,12 +7,18 @@ app = Flask(__name__)
 # /// is relative path and //// is absolute path
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sample.db'
 db = SQLAlchemy(app)
+# to setup db
+# source env/bin/activate
+# python3
+# from app import db
+# db.create_all()
+# exit()
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
-
+    
     def __repr__(self):
         return '<Task %r>' % self.id
 
